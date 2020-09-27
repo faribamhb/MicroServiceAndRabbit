@@ -32,14 +32,15 @@ public class RabbitMQConfig {
     }
 
     @Bean
-    Binding binding(Queue queue, DirectExchange exchange) {
-        return BindingBuilder.bind(queue).to(exchange).with(routingkey);
+    Binding binding() {
+        return BindingBuilder.bind(queue()).to(exchange()).with(routingkey);
     }
 
     @Bean
     public MessageConverter jsonMessageConverter() {
         return new Jackson2JsonMessageConverter();
     }
+
 
 
     public AmqpTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
